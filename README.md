@@ -8,6 +8,11 @@
 python3 -m venv venv
 source venv/bin/activate
 ```
+### Activate Virtual Environment
+
+```bash
+venv\Scripts\activate
+```
 
 ### Install Dependencies
 
