@@ -84,3 +84,53 @@ A chronological 80/20 split was used to preserve the time-series nature of the d
 * data/processed/y_train.csv
 * data/processed/y_test.csv
 * models/scaler.joblib
+
+
+
+## Task 5: Linear Regression Baseline
+
+### Objective
+
+Developed a baseline Linear Regression model to predict mushroom yield using environmental sensor measurements (temperature, humidity, and CO₂ concentration).
+
+### Model Performance
+
+| Metric   | Value |
+| -------- | ----- |
+| MAE      | 0.978 |
+| RMSE     | 1.137 |
+| R² Score | 0.01  |
+
+The model was evaluated on the chronological test dataset. The results indicate that the model provides a basic predictive baseline but explains only a small proportion of the variation in mushroom yield.
+
+### Coefficient Summary
+
+| Feature     | Coefficient |
+| ----------- | ----------: |
+| Temperature |    0.087840 |
+| Humidity    |   -0.214397 |
+| CO₂         |   -0.127668 |
+
+**Interpretation:**
+
+* Temperature showed a positive relationship with mushroom yield.
+* Humidity exhibited the strongest influence and showed a negative relationship with yield.
+* CO₂ concentration also showed a negative association with yield in the observed dataset.
+* Since the model was trained on scaled features, the coefficients represent relative influence rather than direct physical units.
+
+### Diagnostic Conclusion
+
+Residual analysis was performed using:
+
+* Residuals vs Predicted Yield
+* Residuals vs Humidity
+
+The residuals were generally distributed around the zero line without severe systematic bias. However, the low R² score suggests that the linear model is unable to capture much of the variability in mushroom yield. This indicates that the relationship between environmental conditions and yield may be non-linear. Therefore, more advanced models such as Random Forest Regression should be explored and compared against this baseline model.
+
+### Generated Artifacts
+
+* `models/linear_regression.joblib`
+* `reports/linear_metrics.json`
+* `reports/linear_diagnostics.md`
+* `reports/residuals_vs_predicted.png`
+* `reports/residuals_vs_humidity.png`
