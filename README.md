@@ -134,3 +134,54 @@ The residuals were generally distributed around the zero line without severe sys
 * `reports/linear_diagnostics.md`
 * `reports/residuals_vs_predicted.png`
 * `reports/residuals_vs_humidity.png`
+
+
+
+**Task 6**.
+
+## Final CV Comparison
+
+| Model             | Fold 1 MAE | Fold 2 MAE | Fold 3 MAE | Mean CV MAE |
+| ----------------- | ---------- | ---------- | ---------- | ----------- |
+| Linear Regression | 0.953      | 0.817      | 0.858      | 0.876       |
+| Random Forest     | 0.904      | 0.858      | 0.806      | 0.856       |
+
+### Interpretation
+
+* Random Forest achieved a slightly lower Mean CV MAE (**0.856**) than Linear Regression (**0.876**).
+* This indicates that Random Forest generalized slightly better across the time-based validation folds.
+* However, the improvement was modest, suggesting that the dataset may not contain strong nonlinear relationships.
+
+---
+
+## Final Model Comparison
+
+| Model             | MAE   | RMSE  | R²     |
+| ----------------- | ----- | ----- | ------ |
+| Linear Regression | 0.829 | 1.087 | -0.080 |
+| Random Forest     | 0.962 | 1.166 | -0.041 |
+
+### Discussion
+
+* Linear Regression produced lower test MAE and RMSE.
+* Random Forest produced a slightly better R² score.
+* Cross-validation favored Random Forest, but the hold-out test set favored Linear Regression.
+* Overall, neither model demonstrated strong predictive performance, indicating that additional feature engineering and hyperparameter tuning may be beneficial.
+
+---
+
+## Overfitting Discussion
+
+### Training vs Testing Error
+
+| Metric    | Value |
+| --------- | ----- |
+| Train MAE | 0.275 |
+| Test MAE  | 0.962 |
+
+### Interpretation
+
+> The Random Forest model exhibited signs of overfitting. The training MAE (0.275) was substantially lower than the test MAE (0.962), indicating that the model fit the training data very closely but experienced reduced performance on unseen observations. This suggests limited generalization and highlights the need for hyperparameter optimization in future iterations.
+
+---
+
