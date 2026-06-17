@@ -185,3 +185,83 @@ The residuals were generally distributed around the zero line without severe sys
 
 ---
 
+## Task 7: Hyperparameter Tuning & Champion Model Selection
+
+### Objective
+
+The objective of this task was to optimize the Random Forest Regressor using GridSearchCV and compare its performance with the baseline Linear Regression and Default Random Forest models. The best-performing model was selected as the champion model for deployment.
+
+### Methodology
+
+1. Loaded the cleaned polyhouse yield dataset.
+2. Selected the input features:
+
+   * Temperature
+   * Humidity
+   * CO₂
+3. Selected `yield_kg` as the target variable.
+4. Performed a time-based train-test split to preserve chronological order.
+5. Trained a baseline Linear Regression model.
+6. Trained a Default Random Forest Regressor.
+7. Applied GridSearchCV with TimeSeriesSplit cross-validation to tune:
+
+   * `n_estimators`
+   * `max_depth`
+   * `min_samples_leaf`
+8. Evaluated all models using:
+
+   * Mean Absolute Error (MAE)
+   * Root Mean Squared Error (RMSE)
+   * R² Score
+9. Compared model performance and selected a champion model.
+10. Saved the champion model and best hyperparameters for future deployment.
+
+### Hyperparameter Grid
+
+```python
+param_grid = {
+    "n_estimators": [50, 100, 200],
+    "max_depth": [3, 5, 10],
+    "min_samples_leaf": [1, 2, 4]
+}
+```
+
+### Model Comparison
+
+| Model                 | MAE   | RMSE  | R² Score |
+| --------------------- | ----- | ----- | -------- |
+| Linear Regression     | 0.978 | 1.137 | 0.010    |
+| Default Random Forest | 0.962 | 1.166 | -0.041   |
+| Tuned Random Forest   | 0.966 | 1.165 | -0.039   |
+
+### Champion Model
+
+The selected champion model was saved as:
+
+```text
+models/champion.joblib
+```
+
+The champion model was chosen based on overall predictive performance, model reliability, and suitability for deployment.
+
+### Generated Artifacts
+
+```text
+models/
+├── champion.joblib
+└── rf_best_params.json
+
+reports/
+├── model_comparison.md
+├── model_comparison.csv
+├── gridsearch_results.csv
+└── pred_vs_actual.png
+```
+
+### Key Learning Outcomes
+
+* Implemented TimeSeriesSplit cross-validation.
+* Performed hyperparameter tuning using GridSearchCV.
+* Compared multiple regression models using evaluation metrics.
+* Selected and serialized a deployment-ready champion model.
+* Documented model performance and limitations for reproducibility.
