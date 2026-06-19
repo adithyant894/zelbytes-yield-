@@ -265,3 +265,114 @@ reports/
 * Compared multiple regression models using evaluation metrics.
 * Selected and serialized a deployment-ready champion model.
 * Documented model performance and limitations for reproducibility.
+
+# Task 8: Streamlit Yield Forecast Application
+
+## Objective
+
+Developed an interactive Streamlit application that loads the champion machine learning model and predicts mushroom yield from environmental sensor readings. The application provides a user-friendly interface for exploring how temperature, humidity, and CO₂ levels affect predicted yield.
+
+## Features
+
+### Interactive Inputs
+
+The application allows users to adjust environmental conditions through sidebar controls:
+
+* Temperature (°C)
+* Humidity (%)
+* CO₂ Concentration (ppm)
+
+### Yield Prediction
+
+* Loads the deployment-ready champion model (`champion.joblib`)
+* Generates real-time mushroom yield predictions
+* Displays results using Streamlit metric components
+* Output expressed in kilograms (kg)
+
+### Performance Optimization
+
+* Implemented `@st.cache_resource`
+* Prevents repeated model loading
+* Improves application responsiveness
+
+### Sensitivity Analysis
+
+The application includes a humidity sensitivity chart that:
+
+* Holds temperature and CO₂ constant
+* Varies humidity across a predefined range
+* Visualizes the predicted impact on mushroom yield
+
+### Model Information
+
+An expandable information panel displays:
+
+* Model type
+* Version information
+* Input features
+* Prediction target
+* Evaluation summary
+
+### Input Validation
+
+User warnings are displayed when sensor values fall outside the recommended operating range, helping ensure responsible model usage.
+
+---
+
+## Application Workflow
+
+1. Load the champion model.
+2. Accept environmental sensor readings from the user.
+3. Construct the feature dataframe.
+4. Generate yield prediction.
+5. Display predicted yield in kilograms.
+6. Create humidity sensitivity analysis.
+7. Present model metadata and validation messages.
+
+---
+
+## Run Instructions
+
+### Launch Streamlit Application
+
+```bash
+streamlit run app.py
+```
+
+### Local Access
+
+After launching, Streamlit provides a local URL similar to:
+
+```text
+http://localhost:8501
+```
+
+Open the URL in a web browser to access the application.
+
+---
+
+## Generated Artifacts
+
+```text
+app.py
+models/champion.joblib
+models/feature_columns.json
+```
+
+---
+
+## Deliverables
+
+* Working Streamlit application (`app.py`)
+* Champion model integration
+* Interactive prediction interface
+* Sensitivity analysis visualization
+* Application screenshot
+* Updated README documentation
+
+---
+
+## Outcome
+
+Successfully transformed the machine learning workflow into an interactive decision-support application capable of generating real-time mushroom yield forecasts from environmental sensor data. The application demonstrates deployment readiness and provides a foundation for future cloud deployment and stakeholder demonstrations.
+
