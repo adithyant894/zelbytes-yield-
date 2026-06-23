@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+import os
+from datetime import datetime
 
 # ----------------------------
 # Page Configuration
@@ -17,8 +19,39 @@ st.set_page_config(
 # ----------------------------
 @st.cache_resource
 def load_model():
-    return joblib.load("models/champion.joblib")
+    try:
+        return joblib.load("models/champion.joblib")
+    except FileNotFoundError:
+        st.error(
+            "Model file not found. Please check deployment files."
+        )
+        st.stop()
+
 model = load_model()
+LOG_FILE = "prediction_log.csv"
+
+def log_prediction(inputs, prediction):
+
+    row = {
+        "timestamp": datetime.now(),
+        **inputs,
+        "prediction": prediction
+    }
+
+    df = pd.DataFrame([row])
+
+    if os.path.exists(LOG_FILE):
+        df.to_csv(
+            LOG_FILE,
+            mode="a",
+            header=False,
+            index=False
+        )
+    else:
+        df.to_csv(
+            LOG_FILE,
+            index=False
+        )
 
 # ----------------------------
 # Title
@@ -68,11 +101,25 @@ input_df = pd.DataFrame({
 # ----------------------------
 if st.button("Predict Yield"):
 
-    prediction = model.predict(input_df)[0]
+    with st.spinner("Generating prediction..."):
+        prediction = model.predict(input_df)[0]
+
+    log_prediction(
+        input_df.iloc[0].to_dict(),
+        prediction
+    )
 
     st.metric(
         label="Predicted Yield",
         value=f"{prediction:.2f} kg"
+    )
+
+    st.success(
+        f"Predicted Yield: {prediction:.2f} kg"
+    )
+
+    st.success(
+        f"Predicted Yield: {prediction:.2f} kg"
     )
 
     # ------------------------
