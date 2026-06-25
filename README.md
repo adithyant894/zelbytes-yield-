@@ -376,9 +376,12 @@ models/feature_columns.json
 
 Successfully transformed the machine learning workflow into an interactive decision-support application capable of generating real-time mushroom yield forecasts from environmental sensor data. The application demonstrates deployment readiness and provides a foundation for future cloud deployment and stakeholder demonstrations.
 
-## Conclusion
+
 
 Task 9 successfully deployed the Mushroom Yield Forecast application to Streamlit Community Cloud, making the solution publicly accessible through a live web URL. The deployment process included dependency management through a pinned requirements file, model artifact handling, application validation, and cloud hosting configuration.
 
 Additionally, a lightweight monitoring framework was implemented through prediction logging, enabling the collection of input parameters and prediction outputs for future analysis. Monitoring documentation and retraining triggers were established to support model maintenance, performance tracking, and continuous improvement. This task completed the end-to-end machine learning lifecycle by transitioning the solution from local development to a production-ready cloud deployment environment.
 
+Task 10: Technical Report & Capstone Presentation
+
+Task 10 focused on documenting and presenting the complete Mushroom Yield Forecasting project. A comprehensive technical report was prepared covering the problem statement, dataset description, data cleaning, exploratory data analysis, model development, evaluation, deployment, monitoring, limitations, and future improvements. The final capstone presentation demonstrated the end-to-end machine learning workflow, including the deployed Streamlit application, model performance, monitoring strategy, and key project outcomes. This task showcased the successful completion of the project from data analysis to production deployment.
